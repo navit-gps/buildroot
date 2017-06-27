@@ -2,10 +2,9 @@ dependencies:
   pre:
     - sudo apt-get install expect-dev
     - wget https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz
-    - mkdir ~/workspace
-    - tar xfz buildroot-2017.02.3.tar.gz -C ~/workspace
-    - rsync -vrtza . ~/workspace/
+    - tar xfz buildroot-2017.02.3.tar.gz -C ~/
+    - rsync -vrtza . ~/buildroot-2017.02.3/
     - cp config .config:
-      pwd: ~/workspace/
+      pwd: ~/buildroot-2017.02.3/
     - bash build.sh:
-      pwd: ~/workspace/
+      pwd: ~/buildroot-2017.02.3/
