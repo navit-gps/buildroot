@@ -113,9 +113,9 @@ BR2_BZCAT="bzcat"
 BR2_XZCAT="xzcat"
 BR2_LZCAT="lzip -d -c"
 BR2_TAR_OPTIONS=""
-BR2_DEFCONFIG="/mnt/buildroot/buildroot-2017.02.3/configs/raspberrypi2_defconfig"
-BR2_DL_DIR="$(TOPDIR)/dl"
-BR2_HOST_DIR="$(BASE_DIR)/host"
+BR2_DEFCONFIG="~/buildroot-2017.02.3/configs/raspberrypi2_defconfig"
+BR2_DL_DIR="~/buildroot-cache/dl"
+BR2_HOST_DIR="~/buildroot-cache/host"
 
 #
 # Mirrors and Download locations
