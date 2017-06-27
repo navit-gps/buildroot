@@ -1,5 +1,6 @@
 dependencies:
   pre:
+    - sudo apt-get install expect
     - wget https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz
     - mkdir ~/workspace
     - tar xfz buildroot-2017.02.3.tar.gz -C ~/workspace
