@@ -4,4 +4,7 @@ dependencies:
     - mkdir ~/buildroot
     - tar xfz buildroot-2017.02.3.tar.gz -C ~/buildroot
     - rsync -vrtza . ~/buildroot/
-    - bash build.sh
+    - cp config .config:
+      pwd: ~/buildroot/
+    - bash build.sh:
+      pwd: ~/buildroot/
