@@ -1,0 +1,7 @@
+dependencies:
+  pre:
+    - wget https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz
+    - mkdir ~/buildroot
+    - tar xfz buildroot-2017.02.3.tar.gz -C ~/buildroot
+    - rsync -vrtza . ~/buildroot/
+    - bash build.sh

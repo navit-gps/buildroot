@@ -1,0 +1,11 @@
+--- a/navit/maps/CMakeLists.txt	2017-06-26 19:18:30.769269410 +0000
++++ b/navit/maps/CMakeLists.txt	2017-06-26 19:11:41.058804821 +0000
+@@ -38,7 +38,7 @@
+ 	 VERBATIM
+       )
+    endif()
+-   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${SAMPLE_MAP_NAME}.bin
++   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${SAMPLE_MAP_NAME}.bin ${CMAKE_CURRENT_BINARY_DIR}/${SAMPLE_MAP_NAME}.xml
+         DESTINATION ${SHARE_DIR}/maps
+         PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
+ endif()

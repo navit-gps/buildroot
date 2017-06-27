@@ -1,0 +1,12 @@
+config BR2_PACKAGE_NAVIT
+        bool "navit"
+        depends on BR2_PACKAGE_GLIBC
+	depends on BR2_PACKAGE_LIBGTK2
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_HAS_LIBEGL 
+	# depends on BR2_PACKAGE_HAS_LIBGLES
+	depends on BR2_PACKAGE_QT5BASE_DBUS
+        help
+          The OpenSource vector based navigation software
+
+          http://www.navit-project.org
