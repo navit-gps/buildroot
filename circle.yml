@@ -4,9 +4,8 @@ dependencies:
     - wget https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz
     - tar xfz buildroot-2017.02.3.tar.gz -C ~/
     - rsync -vrtza . ~/buildroot-2017.02.3/
-    - cp config .config:
-      pwd: ~/buildroot-2017.02.3/
-    - make toolchain:
+    - cp ~/buildroot-2017.02.3/config ~/buildroot-2017.02.3/.config
+    - bash build.sh toolchain:
       pwd: ~/buildroot-2017.02.3/
     - bash build.sh:
       pwd: ~/buildroot-2017.02.3/
