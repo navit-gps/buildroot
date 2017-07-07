@@ -8,7 +8,7 @@ dependencies:
     - rsync -vrtza . ~/buildroot-2017.02.3/
     - cd ~/buildroot-2017.02.3/ && cp config .config
     # m4 is not installed correctly when using the cache, so we force a rebuild
-    - "[ -d buildroot-2017.02.3/output/build/host-m4-1.4.18 ] && rm -rf buildroot-2017.02.3/output/build/host-m4-1.4.18"
+    - "[ -d ~/buildroot-2017.02.3/output/build/host-m4-1.4.18 ] && rm -rf ~/buildroot-2017.02.3/output/build/host-m4-1.4.18"
     - cd ~/buildroot-2017.02.3/ && bash build.sh toolchain:
         timeout: 3600
     - cd ~/buildroot-2017.02.3/ && sed -i -e 's/BR2_JLEVEL=0/BR2_JLEVEL=1/' .config
