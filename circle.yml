@@ -12,6 +12,6 @@ dependencies:
     - cd ~/buildroot-2017.02.3/ && sed -i -e 's/BR2_JLEVEL=0/BR2_JLEVEL=1/' .config
     - cd ~/buildroot-2017.02.3/ && bash build.sh host-cmake:
         timeout: 3600
-    # - cd ~/buildroot-2017.02.3/ && sed -i -e 's/BR2_JLEVEL=1/BR2_JLEVEL=0/' .config
-    # - cd ~/buildroot-2017.02.3/ && bash build.sh:
-    #     timeout: 3600
+    - cd ~/buildroot-2017.02.3/ && sed -i -e 's/BR2_JLEVEL=1/BR2_JLEVEL=0/' .config
+    - cd ~/buildroot-2017.02.3/ && bash build.sh:
+        timeout: 3600
