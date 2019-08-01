@@ -1,12 +1,37 @@
 config BR2_PACKAGE_NAVIT
         bool "navit"
         depends on BR2_PACKAGE_GLIBC
-	depends on BR2_PACKAGE_LIBGTK2
-	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_HAS_LIBEGL 
-	# depends on BR2_PACKAGE_HAS_LIBGLES
-	depends on BR2_PACKAGE_QT5BASE_DBUS
         help
           The OpenSource vector based navigation software
 
           http://www.navit-project.org
+
+if BR2_PACKAGE_NAVIT
+
+config BR2_PACKAGE_NAVIT_GTK2
+	bool "enable GTK2 graphics driver"
+	select BR2_PACKAGE_LIBGTK2
+	select BR2_PACKAGE_XORG7
+	help
+	  Enable the gtk2 (gtk_drawing_area) graphics driver
+
+config BR2_PACKAGE_NAVIT_QT5
+	bool "enable QT5 graphics driver"
+	select BR2_PACKAGE_QT5DECLARATIVE
+	select BR2_PACKAGE_QT5DECLARATIVE_QUICK
+	select BR2_PACKAGE_QT5SVG
+	help
+	  Enable the QT5 (qml2) graphics driver
+
+config BR2_PACKAGE_NAVIT_J1850_PLUGIN
+	bool "enabled the j1850 plugin"
+	help
+	  Enable the SAE-J1850 plugin
+
+config BR2_PACKAGE_NAVIT_VEHICLE_GPSD
+	bool "enabled gpsd vehicle"
+	select BR2_PACKAGE_GPSD
+	help
+	  Enable the GPSD vehicle
+
+endif
