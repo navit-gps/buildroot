@@ -1,0 +1,46 @@
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: ubuntu:18.04
+  steps:
+    - checkout
+    - run:
+        name: setup prerequisites
+        command: apt-get update && apt-get install -y expect-dev wget git build-essential file cpio unzip python bc
+    - run:
+        name: Prepare build
+        command: |
+             git clone --depth=1 https://github.com/buildroot/buildroot.git
+        no_output_timeout: 1200
+    - run:
+        name: Prepare config
+        command: |
+             cd buildroot/ && \
+             cat configs/raspberrypi2_defconfig \
+                     ../glibc_defconfig \
+                     ../navit_defconfig \
+                     > configs/navit_raspberrypi2_defconfig && \
+             make defconfig navit_raspberrypi2_defconfig
+    - run:
+        name: Build toolchain
+        command: |
+             cd buildroot/ && make toolchain
+        no_output_timeout: 1200
+    - run:
+        name: Build image
+        command: |
+             cd buildroot && make
+        no_output_timeout: 1200
+
+jobs:
+  raspberrypi2:
+    <<: *defaults
+    environment:
+      target: raspberrypi2
+
+workflows:
+  version: 2
+  build_everything:
+    jobs:
+      - raspberrypi2
