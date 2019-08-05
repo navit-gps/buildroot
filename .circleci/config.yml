@@ -7,8 +7,7 @@ defaults: &defaults
     - checkout
     - run:
         name: setup prerequisites
-        command: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-            expect-dev wget git build-essential file cpio unzip python bc
+        command: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget git build-essential file cpio unzip python bc
     - run:
         name: Prepare build
         command: |
