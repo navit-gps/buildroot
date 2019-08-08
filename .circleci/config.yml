@@ -23,6 +23,9 @@ defaults: &defaults
                      ../navit_defconfig \
                      > configs/navit_${target}_defconfig && \
              make defconfig navit_${target}_defconfig
+    - store_artifacts:
+          path: buildroot/.config
+          destination: buildroot-config
     - run:
         name: Configure Buildroot's external source
         command: |
@@ -46,9 +49,14 @@ jobs:
     <<: *defaults
     environment:
       target: raspberrypi2
+  raspberrypi3:
+    <<: *defaults
+    environment:
+      target: raspberrypi3
 
 workflows:
   version: 2
   build_everything:
     jobs:
       - raspberrypi2
+      - raspberrypi3
