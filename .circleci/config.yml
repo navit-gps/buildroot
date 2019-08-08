@@ -36,12 +36,12 @@ defaults: &defaults
     - run:
         name: Build toolchain
         command: |
-             cd buildroot/ && bash ../build.sh toolchain || tail -n 200 br.log
+             cd buildroot/ && bash ../build.sh toolchain || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
     - run:
         name: Build image
         command: |
-             cd buildroot/ && bash ../build.sh || tail -n 200 br.log
+             cd buildroot/ && bash ../build.sh || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
 
 jobs:
