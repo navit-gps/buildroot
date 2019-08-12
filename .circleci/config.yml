@@ -73,7 +73,7 @@ defaults: &defaults
     - run:
         name: Build remaining packages
         command: |
-             cd buildroot/ && bash BR2_JLEVEL=2 ../build.sh || (tail -n 200 br.log; exit 1)
+             cd buildroot/ && bash ../build.sh || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
 
 jobs:
