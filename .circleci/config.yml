@@ -12,7 +12,7 @@ defaults: &defaults
         name: Prepare build
         command: |
              git clone https://github.com/buildroot/buildroot.git && \
-             cd buildroot && git checkout 2018.08.3
+             cd buildroot && git checkout 650818fb3a
         no_output_timeout: 1200
     - run:
         name: Prepare config
