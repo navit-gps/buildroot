@@ -60,12 +60,12 @@ jobs:
     <<: *defaults
     environment:
       target: raspberrypi2
-      buildroot_version: 650818fb3a
+      buildroot_version: 2018.02.7
   raspberrypi3:
     <<: *defaults
     environment:
       target: raspberrypi3
-      buildroot_version: 650818fb3a
+      buildroot_version: 2018.02.7
 
 workflows:
   version: 2
