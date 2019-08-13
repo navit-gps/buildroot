@@ -11,6 +11,7 @@ defaults: &defaults
     - run:
         name: Prepare build
         command: |
+             echo "$buildroot_version" > buildroot_version.txt && \
              git clone https://github.com/buildroot/buildroot.git && \
              cd buildroot && git checkout ${buildroot_version}
         no_output_timeout: 1200
@@ -29,14 +30,14 @@ defaults: &defaults
           destination: buildroot-config
     - restore_cache:
        keys:
-         - v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ .Environment.buildroot_version }}
+         - v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
     - run:
         name: Build toolchain
         command: |
              cd buildroot/ && bash ../build.sh toolchain || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
     - save_cache:
-        key: v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ .Environment.buildroot_version }}
+        key: v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
         paths:
           - "buildroot/output/host/"
           - "buildroot/output/build/"
