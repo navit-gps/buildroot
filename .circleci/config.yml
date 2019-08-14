@@ -14,7 +14,7 @@ defaults: &defaults
              echo "$buildroot_version" > buildroot_version.txt && \
              git clone https://github.com/buildroot/buildroot.git && \
              cd buildroot && git checkout ${buildroot_version} && \
-             mkdir ../rootfs/etc && echo $CIRCLE_BUILD_URL > ../rootfs/etc/build_info.txt
+             mkdir -p ../rootfs/etc && echo $CIRCLE_BUILD_URL > ../rootfs/etc/build_info.txt
         no_output_timeout: 1200
     - run:
         name: Prepare config
