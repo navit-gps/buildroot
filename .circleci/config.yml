@@ -73,6 +73,9 @@ defaults: &defaults
              cd buildroot/ && bash ../build.sh || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
     - store_artifacts:
+          path: buildroot/br.log
+          destination: br.log
+    - store_artifacts:
           path: buildroot/output/images
           destination: output
     - run:
