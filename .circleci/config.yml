@@ -32,6 +32,18 @@ defaults: &defaults
           destination: buildroot-config
     - restore_cache:
        keys:
+         - v1-dl-{{ checksum ".config" }}-{{ checksum "buildroot_version.txt" }}
+    - run:
+        name: Download all sources
+        command: |
+             cd buildroot/ && bash ../build.sh source || (tail -n 200 br.log; exit 1)
+        no_output_timeout: 1200
+    - save_cache:
+        key: v1-dl-{{ checksum ".config" }}-{{ checksum "buildroot_version.txt" }}
+        paths:
+          - "buildroot/output/dl/"
+    - restore_cache:
+       keys:
          - v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
     - run:
         name: Build toolchain
