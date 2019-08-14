@@ -24,7 +24,8 @@ defaults: &defaults
                      ../navit_defconfig \
                      > configs/navit_${target}_defconfig && \
              make BR2_EXTERNAL=../ defconfig && \
-             make defconfig navit_${target}_defconfig
+             make defconfig navit_${target}_defconfig && \
+             grep BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE .config > ../kernel-version.txt
     - store_artifacts:
           path: buildroot/.config
           destination: buildroot-config
@@ -41,11 +42,20 @@ defaults: &defaults
         paths:
           - "buildroot/output/host/"
           - "buildroot/output/build/"
+    - restore_cache:
+       keys:
+         - v1-{{ .Environment.CIRCLE_JOB }}-kernel-{{ checksum "kernel-version.txt" }}-{{ checksum "buildroot_version.txt" }}
     - run:
         name: Build kernel
         command: |
-             cd buildroot/ && bash ../build.sh linux-rebuild || (tail -n 200 br.log; exit 1)
+             cd buildroot/ && bash ../build.sh BR2_JLEVEL=0 host-pkgconf-rebuild host-kmod-rebuild linux-rebuild || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
+    - save_cache:
+        key: v1-{{ .Environment.CIRCLE_JOB }}-kernel-{{ checksum "kernel-version.txt" }}-{{ checksum "buildroot_version.txt" }}
+        paths:
+          - "buildroot/output/target/"
+          - "buildroot/output/build/host-pkgconf-*/"
+          - "buildroot/output/build/host-kmod-*/"
     - run:
         name: Build remaining packages
         command: |
