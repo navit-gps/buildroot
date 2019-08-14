@@ -44,17 +44,16 @@ defaults: &defaults
           - "buildroot/dl/"
     - restore_cache:
        keys:
-         - v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
+         - v2-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
     - run:
         name: Build toolchain
         command: |
              cd buildroot/ && bash ../build.sh toolchain || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
     - save_cache:
-        key: v1-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
+        key: v2-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "glibc_defconfig" }}-{{ checksum "buildroot_version.txt" }}
         paths:
-          - "buildroot/output/host/"
-          - "buildroot/output/build/"
+          - "buildroot/output/"
     - restore_cache:
        keys:
          - v1-{{ .Environment.CIRCLE_JOB }}-kernel-{{ checksum "kernel-version.txt" }}-{{ checksum "buildroot_version.txt" }}
