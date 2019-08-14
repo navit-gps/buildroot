@@ -20,6 +20,8 @@ config BR2_PACKAGE_NAVIT_QT5
 	select BR2_PACKAGE_QT5DECLARATIVE
 	select BR2_PACKAGE_QT5DECLARATIVE_QUICK
 	select BR2_PACKAGE_QT5SVG
+        select BR2_PACKAGE_QT5LOCATION
+        select BR2_PACKAGE_QT5SENSORS
 	help
 	  Enable the QT5 (qml2) graphics driver
 

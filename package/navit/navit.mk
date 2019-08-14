@@ -20,7 +20,7 @@ NAVIT_CONF_OPTS += -Dgraphics/gtk_drawing_area=0
 endif
 
 ifeq ($(BR2_PACKAGE_NAVIT_QT5),y)
-NAVIT_DEPENDENCIES += qt5svg qt5declarative
+NAVIT_DEPENDENCIES += qt5svg qt5declarative qt5location qt5sensors
 NAVIT_CONF_OPTS += -Dgraphics/qt5=1
 else
 NAVIT_CONF_OPTS += -DDISABLE_QT=1 -Dgraphics/qt5=0 -Dvehicle/qt5=0
