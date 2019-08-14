@@ -54,9 +54,7 @@ defaults: &defaults
     - save_cache:
         key: v1-{{ .Environment.CIRCLE_JOB }}-kernel-{{ checksum "kernel-version.txt" }}-{{ checksum "buildroot_version.txt" }}
         paths:
-          - "buildroot/output/target/"
-          - "buildroot/output/build/host-pkgconf-*/"
-          - "buildroot/output/build/host-kmod-*/"
+          - "buildroot/output/"
     - run:
         name: Build remaining packages
         command: |
