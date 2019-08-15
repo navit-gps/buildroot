@@ -87,7 +87,8 @@ defaults: &defaults
     - run:
         name: Build remaining packages
         command: |
-             cd buildroot/ && bash ../build.sh && mv output/images/sdcard.img output/images/sdcard-${CIRCLE_BUILD_NUM}.img \
+             cd buildroot/ && bash ../build.sh && \
+             mv output/images/sdcard.img output/images/navit-${target}-${CIRCLE_BUILD_NUM}.img \
              || (tail -n 200 br.log; exit 1)
         no_output_timeout: 1200
     - store_artifacts:
