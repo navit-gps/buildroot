@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-NAVIT_VERSION = 3dcf4ba91e33a327d920cedfe29455569c3de747
+NAVIT_VERSION = 2a64c157cfd328e0353f098b2f23deb839be0d50
 NAVIT_SITE = git://github.com/navit-gps/navit
 NAVIT_LICENSE = GPL-2
 NAVIT_INSTALL_TARGET = YES
